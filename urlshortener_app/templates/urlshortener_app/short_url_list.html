@@ -14,8 +14,8 @@
             <tbody>
                 {% for url in urls %}
                     <tr>
-                        <td><a href="{{ url.short_code }}" target="_blank">{{ url.short_code }}</a></td>
-                        <td>{{ url.long_url }}</td>
+                        <td><a href="{{ url.long_url }}" target="_blank">{{ url.short_code }}</a></td>
+                        <td><a href="{{ url.long_url }}" target="_blank">{{ url.long_url }}</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
