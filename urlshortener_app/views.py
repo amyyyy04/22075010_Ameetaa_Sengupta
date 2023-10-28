@@ -14,16 +14,14 @@ def shorten_url(request):
     if request.method == 'POST' and form.is_valid():
         long_url = form.cleaned_data['long_url']
         
-        # Check if the long URL already exists
         existing_url_object = URL.objects.filter(long_url=long_url).first()
         if existing_url_object:
             short_code = existing_url_object.short_code
         else:
-            # Generate a new short code if the URL is not in the database
             short_code = generate_unique_short_code()
             URL.objects.create(long_url=long_url, short_code=short_code)
         
-        short_url = request.build_absolute_uri(f'/{short_code}')  # Include the full path
+        short_url = request.build_absolute_uri(f'/{short_code}') 
         return render(request, 'urlshortener_app/shorten_url.html', {'short_url': short_url, 'short_code': short_code})
 
     return render(request, 'urlshortener_app/shorten_url.html', {'form': form})
