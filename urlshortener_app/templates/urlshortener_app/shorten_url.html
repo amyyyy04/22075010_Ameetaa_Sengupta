@@ -1,0 +1,21 @@
+<!-- urlshortener_app/templates/urlshortener_app/shorten_url.html -->
+
+{% extends 'urlshortener_app/base.html' %}
+
+{% block content %}
+    <h2 class="mb-4">URL Shortener</h2>
+    <form method="post" class="form-inline">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary ml-2">Shorten URL</button>
+    </form>
+    {% if short_url %}
+        <div class="mt-3">
+            <h4>Your Shortened URL:</h4>
+            <a href="{{ short_url }}" target="_blank">{{ short_code }}</a>
+        </div>
+        <div class="mt-3">
+            <a href="{% url 'short_url_list' %}" class="btn btn-secondary">Short URL List</a>
+        </div>
+    {% endif %}
+{% endblock %}

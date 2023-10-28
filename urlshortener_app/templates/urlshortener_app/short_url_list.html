@@ -1,0 +1,25 @@
+<!-- urlshortener_app/templates/urlshortener_app/short_url_list.html -->
+
+{% extends 'urlshortener_app/base.html' %}
+
+{% block content %}
+    <h2 class="mb-4">Short URL List</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Short URL</th>
+                    <th scope="col">Long URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for url in urls %}
+                    <tr>
+                        <td><a href="{{ url.short_code }}" target="_blank">{{ url.short_code }}</a></td>
+                        <td>{{ url.long_url }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
